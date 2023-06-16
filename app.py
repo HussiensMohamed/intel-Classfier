@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, url_for, jsonify
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 from PIL import Image
 import numpy as np
 
@@ -12,8 +12,8 @@ def preprossing(image):
     image_arr.shape = (1, 150, 150, 3)
     return image_arr
 
-classes = ['Buildings' ,'Forest', 'Glacier' ,'Mountain' ,'Sea' ,'Street']
-model=load_model("Intel_Image_Classification.h5")
+classes = ["glioma Tumour", "meningioma Tumour", "No Tumour", "Pituitary Tumour"]
+model=tf.keras.models.load_model("BrainTumor10.h5")
 
 @app.route('/')
 def index():
